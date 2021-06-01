@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -22,16 +22,14 @@ import * as ImagePicker from "expo-image-picker";
 import StarRatingComponent from "../Components/StarRatingComponent";
 import DailyCardRating from "../Components/DailyCardRating";
 import { getData } from '../Functions/FirebaseFunctions'
+import {AuthContext} from '../Components/Context'
 
 const HomePage = ({ navigation }) => {
   const dbh = firebase.firestore();
   const user = firebase.auth().currentUser;
   var todaysDate = new Date().toDateString();
+  const {signOut} = useContext(AuthContext)
 
-  // getData().map(x => {
-  //   console.log(x.diet)
-  // }
-  //   )
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={require("../assets/profile.png")} />
@@ -39,9 +37,13 @@ const HomePage = ({ navigation }) => {
         title="Edit profile"
         onPress={() => navigation.navigate("ProfilePage")}
       />
-      <FlatList 
-      />
+      <TouchableOpacity onPress={() => signOut()}>
+        <Text style={{color: 'red', alignSelf:'center'}}>Sign out</Text>
+      </TouchableOpacity>
+     
+      <DailyCardRating />
       
+
     </View>
   );
 };

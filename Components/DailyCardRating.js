@@ -19,10 +19,15 @@ import GetDate from "../Components/GetDate";
 import { FontAwesome } from "@expo/vector-icons";
 import { Component } from "react";
 import StarRating from "react-native-star-rating";
-import { uploadFirebase, getFirebaseData } from "../Functions/FirebaseFunctions";
+import { uploadFirebase, getData } from "../Functions/FirebaseFunctions";
 
 const DailyCardRating = () => {
+  const [data, setData] = useState()
+  useEffect(()=> {
     
+    getData()
+  })  
+
     return (
       <View
         style={{
@@ -31,19 +36,13 @@ const DailyCardRating = () => {
           paddingTop: 10,
           paddingBottom: 50,
           height: 10,
-          backgroundColor:'#00cc99'
+          backgroundColor:'#00cc99',
+          borderRadius:30
         }}
       >
         <Text style={{color:'white'}}>
-          
         </Text>
-        <StarRating
-          disabled={false}
-          maxStars={5}
 
-
-          fullStarColor="orange"
-        />
       </View>
     );
     }

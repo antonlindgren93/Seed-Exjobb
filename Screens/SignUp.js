@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -8,23 +8,28 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  Alert
 } from "react-native";
 import firebase from "../firebase";
+import { AuthContext } from "../Components/Context";
 
 const SignUp = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const { signUp } = useContext(AuthContext)
 
-  const signUp = async () => {
-    try {
-      const response = await firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password);
-      navigation.navigate("SignIn");
-    } catch (err) {
-      setError(err.message);
-    }
+  const signUpUser = () => {
+    signUp(
+      {email,
+      password},
+      (response_user) => {
+        console.log(response_user);
+      },
+      (response_error) => {
+        Alert.alert(response_error)
+      }
+    );
   };
   return (
     <View style={styles.container}>
@@ -33,17 +38,17 @@ const SignUp = ({ navigation }) => {
         style={styles.textField}
         placeholder="Email"
         value={email}
-        onChangeText={setEmail}
+        onChangeText={(text) => setEmail(text)}
       />
       <TextInput
         style={styles.textField}
         placeholder="Password"
         secureTextEntry={true}
         value={password}
-        onChangeText={setPassword}
+        onChangeText={(text) => setPassword(text)}
       />
       {error ? <Text style={{ color: "red" }}>{error}</Text> : null}
-      <TouchableOpacity style={styles.buttons} onPress={() => signUp()}>
+      <TouchableOpacity style={styles.buttons} onPress={() => signUpUser()}>
         <Text style={{ color: "white" }}>Sign up</Text>
       </TouchableOpacity>
     </View>

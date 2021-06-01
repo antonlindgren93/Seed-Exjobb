@@ -22,11 +22,11 @@ import StarRating from "react-native-star-rating";
 import { uploadFirebase } from "../Functions/FirebaseFunctions";
 
 const StarRatingComponent = () => {
-  const [sleep, setSleep] = useState("5");
-  const [focus, setFocus] = useState("5");
-  const [diet, setDiet] = useState("5");
-  const [training, setTraining] = useState("5");
-  const [happiness, setHappniess] = useState("5");
+  const [sleep, setSleep] = useState(2.5);
+  const [concentration, setConcentration] = useState(2.5);
+  const [diet, setDiet] = useState(2.5);
+  const [workout, setWorkout] = useState(2.5);
+  const [socialLife, setSocialLife] = useState(2.5);
 
   return (
     <View
@@ -37,7 +37,19 @@ const StarRatingComponent = () => {
         paddingBottom: 50,
       }}
     >
-      
+      <Text
+        style={{
+          textAlign: "center",
+          fontSize: 30,
+          color: "black",
+          paddingBottom: 20,
+          paddingTop: 15,
+        }}
+      >
+        Rate your day
+      </Text>
+      <GetDate />
+      <Text style={styles.starBar}>How was your sleep?</Text>
       <StarRating
         disabled={false}
         maxStars={5}
@@ -45,13 +57,15 @@ const StarRatingComponent = () => {
         selectedStar={(rating) => setSleep(rating)}
         fullStarColor="orange"
       />
+      <Text style={styles.starBar}>Your concentration level?</Text>
       <StarRating
         disabled={false}
         maxStars={5}
-        rating={focus}
-        selectedStar={(rating) => setFocus(rating)}
+        rating={concentration}
+        selectedStar={(rating) => setConcentration(rating)}
         fullStarColor="orange"
       />
+      <Text style={styles.starBar}>How has your diet been?</Text>
       <StarRating
         disabled={false}
         maxStars={5}
@@ -59,36 +73,47 @@ const StarRatingComponent = () => {
         selectedStar={(rating) => setDiet(rating)}
         fullStarColor="orange"
       />
+      <Text style={styles.starBar}>How was your workout?</Text>
       <StarRating
         disabled={false}
         maxStars={5}
-        rating={training}
-        selectedStar={(rating) => setTraining(rating)}
+        rating={workout}
+        selectedStar={(rating) => setWorkout(rating)}
         fullStarColor="orange"
       />
+      <Text style={styles.starBar}>How was your social life today?</Text>
       <StarRating
         disabled={false}
         maxStars={5}
-        rating={happiness}
-        selectedStar={(rating) => setHappniess(rating)}
+        rating={socialLife}
+        selectedStar={(rating) => setSocialLife(rating)}
         fullStarColor="orange"
       />
       <TouchableOpacity
-          style={{
-            alignItems: "center",
-            backgroundColor: "#00cc99",
-            padding: 10,
-            borderRadius: 50,
-            width: "50%",
-            marginTop: 20,
-            marginLeft: "25%",
-          }}
-          onPress={() => uploadFirebase(sleep,focus,diet,training,happiness)}
-        >
-      <Text style={{ color: "white" }}>Save</Text>
+        style={{
+          alignItems: "center",
+          backgroundColor: "#00cc99",
+          padding: 10,
+          borderRadius: 50,
+          width: "50%",
+          marginTop: 20,
+          marginLeft: "25%",
+        }}
+        onPress={() =>
+          uploadFirebase(sleep, concentration, diet, workout, socialLife)
+        }
+      >
+        <Text style={{ color: "white" }}>Save</Text>
       </TouchableOpacity>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  starBar: {
+    marginBottom: 10,
+    marginTop:10
+  },
+});
 
 export default StarRatingComponent;

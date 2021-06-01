@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     textAlign: "center",
-    fontSize: 30,
+    fontSize: 20,
     color: "black",
   },
 });
