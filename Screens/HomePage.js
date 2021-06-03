@@ -32,7 +32,7 @@ const HomePage = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={require("../assets/profile.png")} />
+      <Image style={styles.image} source={require("../assets/ai-face.jpeg")} />
       <Button
         title="Edit profile"
         onPress={() => navigation.navigate("ProfilePage")}
@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     width: 200,
     height: 200,
+    borderRadius:50/2
   },
   stars: {
     color: "black",

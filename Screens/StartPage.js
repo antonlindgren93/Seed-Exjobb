@@ -10,9 +10,7 @@ import { TextInput } from 'react-native';
 
 const StartPage = ({ navigation }) => {
 
-    // const signInToFirebase = ({ navigation }) => {
-    //     Alert.alert('Signed in')
-    // }
+  
     return (
         <View style={styles.container}>
           <Image source={require('../assets/seed-plant.png')}/>

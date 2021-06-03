@@ -20,6 +20,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { Component } from "react";
 import StarRating from "react-native-star-rating";
 import { uploadFirebase } from "../Functions/FirebaseFunctions";
+import { TextInput } from "react-native-gesture-handler";
 
 const StarRatingComponent = () => {
   const [sleep, setSleep] = useState(2.5);
@@ -27,6 +28,9 @@ const StarRatingComponent = () => {
   const [diet, setDiet] = useState(2.5);
   const [workout, setWorkout] = useState(2.5);
   const [socialLife, setSocialLife] = useState(2.5);
+  const [dailyText, setDailyText] = useState(
+    "Write something about your day..."
+  );
 
   return (
     <View
@@ -89,6 +93,15 @@ const StarRatingComponent = () => {
         selectedStar={(rating) => setSocialLife(rating)}
         fullStarColor="orange"
       />
+      <View style={{ marginTop: 20 }}>
+        <TextInput
+          style={{ height: 200, width: "100%", borderWidth: 1 }}
+          text={dailyText}
+          onChangeText={(text) => setDailyText(text)}
+          placeholder="Write something about your day...."
+          multiline
+        />
+      </View>
       <TouchableOpacity
         style={{
           alignItems: "center",
@@ -100,7 +113,14 @@ const StarRatingComponent = () => {
           marginLeft: "25%",
         }}
         onPress={() =>
-          uploadFirebase(sleep, concentration, diet, workout, socialLife)
+          uploadFirebase(
+            sleep,
+            concentration,
+            diet,
+            workout,
+            socialLife,
+            dailyText
+          )
         }
       >
         <Text style={{ color: "white" }}>Save</Text>
@@ -112,7 +132,7 @@ const StarRatingComponent = () => {
 const styles = StyleSheet.create({
   starBar: {
     marginBottom: 10,
-    marginTop:10
+    marginTop: 10,
   },
 });
 

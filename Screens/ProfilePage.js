@@ -20,9 +20,11 @@ import * as ImagePicker from "expo-image-picker";
 import { TextInput } from "react-native-gesture-handler";
 
 const ProfilePage = ({ navigation }) => {
+  const user = firebase.auth().currentUser;
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={require("../assets/profile.png")} />
+      {/* <Text style={{alignSelf:'center'}}>Logged in as: {user.email}</Text> */}
       <TextInput style={styles.inputName} placeholder={"Namn"} />
 
       <TextInput style={styles.inputBio} placeholder={"Goals"} />

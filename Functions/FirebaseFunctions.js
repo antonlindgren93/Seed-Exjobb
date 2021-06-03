@@ -24,7 +24,8 @@ export const uploadFirebase = (
   concentration,
   diet,
   workout,
-  socialLife
+  socialLife,
+  dailyText
 ) => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -34,10 +35,12 @@ export const uploadFirebase = (
         diet: diet,
         workout: workout,
         socialLife: socialLife,
+        dailyText: dailyText
       });
       console.log("Uploading to firebase...DONE");
     }
   });
+  Alert.alert('Uploaded')
 };
 
 export const getData = () => {
@@ -53,10 +56,12 @@ export const getData = () => {
           if (documentSnapshot.exists) {
             console.log("User data: ", documentSnapshot.data());
           }
-
           const allData = documentSnapshot.data();
-          console.log('this is all data: ' + allData);
+          console.log(allData.sleep)
+          console.log('Detta är stringify loggen: ' + JSON.stringify(allData));
         });
     }
   });
 };
+
+export let allData;

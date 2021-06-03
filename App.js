@@ -23,6 +23,7 @@ import { AuthContext } from "./Components/Context";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+LogBox.ignoreAllLogs();
 
 export default function App({ navigation }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -97,7 +98,6 @@ export default function App({ navigation }) {
               if (errorcallback != null) {
                 errorcallback(error.message);
               }
-              // Alert.alert('', error.message)
               console.log(error);
             });
         }

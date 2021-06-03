@@ -21,21 +21,6 @@ import GetDate from "../Components/GetDate";
 const dbh = firebase.firestore();
 const user = firebase.auth().currentUser;
 
-//Moved to FirebaseFuntions
-
-// const uploadFirebase = () => {
-//   dbh.collection(user.email).doc().set({
-//     sleep: "Good",
-//     focus: "Okej",
-//     diet: "Good",
-//     training: "Bad",
-//     happiness: "Good",
-//   });
-// };
-
-if (user) {
-  console.log("User email: ", user.email);
-}
 
 const badToFirebase = () => {
 

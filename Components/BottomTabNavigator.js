@@ -9,8 +9,8 @@ const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
     return (
-    <Tab.Navigator>
-        <Tab.Screen name="Profile" component={HomePage}/>
+    <Tab.Navigator >
+        <Tab.Screen name="Profile" component={HomePage} />
         <Tab.Screen name="Rating" component={RatingPage}/>
     </Tab.Navigator>
     )}

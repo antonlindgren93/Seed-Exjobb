@@ -7,7 +7,7 @@ const GetDate = () => {
   useEffect(() => {
     var todaysDate = new Date().toDateString();
     setCurrentDate(todaysDate);
-    console.log(todaysDate)
+    
   }, []);
 
   return (
